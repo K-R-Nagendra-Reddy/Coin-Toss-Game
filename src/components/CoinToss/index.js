@@ -3,33 +3,33 @@ import {Component} from 'react'
 import './index.css'
 
 class CoinToss extends Component {
-  state = {isClicked: true, total: 0, tails: 0, heads: 0}
+  state = {random: 0, total: 0, tails: 0, heads: 0}
 
   OnClickButton = () => {
     const tossResult = Math.floor(Math.random() * 2)
     if (tossResult === 0) {
       this.setState(prevState => ({
-        isClicked: prevState.isClicked,
+        random: Math.floor(Math.random() * 2),
         total: prevState.total + 1,
         heads: prevState.heads + 1,
       }))
     }
     this.setState(prevState => ({
-      isClicked: !prevState.isClicked,
+      random: Math.floor(Math.random() * 2),
       total: prevState.total + 1,
       tails: prevState.tails + 1,
     }))
   }
 
   render() {
-    const {isClicked, total, tails, heads} = this.state
+    const {random, total, tails, heads} = this.state
 
     return (
       <div className="bg-container">
         <div className="card-container">
           <h1 className="heading">Coin Toss Game</h1>
           <p className="heads-or-tails">Heads (or) Tails</p>
-          {isClicked ? (
+          {random === 0 ? (
             <img
               src="https://assets.ccbp.in/frontend/react-js/heads-img.png"
               alt="toss result"
